@@ -105,20 +105,22 @@
 
       
         imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-        console.time('Function #1');
+        
         const myArray = new Uint8Array(imageData.data);
 
         const buffer = _malloc(myArray.length);
         Module.HEAPU8.set(myArray, buffer);
 
+        console.time('Function #1');
         ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
+        console.timeEnd('Function #1')
         console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
       
         var res = Module.HEAPU8.subarray(buffer, buffer+myArray.length);
         imageData.data.set(res);
         context.putImageData(imageData, 0, 0);
         _free(buffer);
-      console.timeEnd('Function #1')
+     
 
      }
 
