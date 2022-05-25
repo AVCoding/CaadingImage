@@ -13,84 +13,10 @@
     <canvas id="Canvas"></canvas>
     <button id="filterButton">Wasm</button>
     
-    <button id="withoutButton">Without</button>
-    
+
     <script type='text/javascript'> 
-        var withoutButton = document.getElementById('withoutButton');
-      window.onload = function() {
-          var canvas;
-          var context;
-          var image = document.getElementById('SourceImage');
-          canvas = document.getElementById('Canvas');
-          context = canvas.getContext('2d');
-          canvas.width = image.width;
-          canvas.height = image.height;
-          context.drawImage(image, 0, 0);
-          var imageData;
-          imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
-
-      
 
 
-        
-      
-      function myFunctionTWO(imageData){
-     
-        for(var i=0; i<20; i++){
-          console.time('Function #2');
-          for (let i = 0; i < imageData.data.length; i += 4) {
-              if ( imageData.data[i] < 100) {
-                  imageData.data[i] = 255;
-                  imageData.data[i + 1] = 255;
-                  imageData.data[i + 2] = 255;
-              }
-
-              if (imageData.data[i] != 255) {
-                  imageData.data[i] = 0;
-                  imageData.data[i + 1] = 0;
-                  imageData.data[i + 2] = 0; 
-              }
-              else {
-                  imageData.data[i] = 255;
-                  imageData.data[i + 1] = 255;
-                  imageData.data[i + 2] = 255;
-              }
-
-              if (imageData.data[i] == 255) {
-                  imageData.data[i] = 0;
-                  imageData.data[i + 1] = 0;
-                  imageData.data[i + 2] = 0;
-              }
-              else {
-                  imageData.data[i] = 255;
-                  imageData.data[i + 1] = 255;
-                  imageData.data[i + 2] = 255;
-              }
-          }
-
-          //context.putImageData(imageData, 0, 0);
-          console.timeEnd('Function #2')
-
-        }
-      }
-
-
-      
-  withoutButton.addEventListener('click', function () {
-    //let canvas;
-    //let context;
-    //let image = document.getElementById('SourceImage');
-    //canvas = document.getElementById('Canvas');
-    //context = canvas.getContext('2d');
-    //canvas.width = image.width;
-    //canvas.height = image.height;
-    //context.drawImage(image, 0, 0);
-    //let imageData;
-    //imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    myFunctionTWO(imageData)
-        
-  });
-      
 
 
       
@@ -107,21 +33,21 @@
                    alert('ready');
 
                        var filterButton = document.getElementById('filterButton');
-          //               let canvas;
-          //               let context;
-          //               let image = document.getElementById('SourceImage');
-          //               canvas = document.getElementById('Canvas');
-          //               context = canvas.getContext('2d');
-          //               canvas.width = image.width;
-          //               canvas.height = image.height;
-          //               context.drawImage(image, 0, 0);
-          //               let imageData;
-          //               imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                        let canvas;
+                        let context;
+                        let image = document.getElementById('SourceImage');
+                        canvas = document.getElementById('Canvas');
+                        context = canvas.getContext('2d');
+                        canvas.width = image.width;
+                        canvas.height = image.height;
+                        context.drawImage(image, 0, 0);
+                        let imageData;
+                        imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
 
                        filterButton.addEventListener('click', function () {
 
-                            myFunction(imageData); 
+                        myFunction(imageData); 
                    });
 
 
@@ -144,9 +70,7 @@
                     }
              }
 
-    
-    }
-    
+  
       
     </script>
     
