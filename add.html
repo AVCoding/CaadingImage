@@ -91,19 +91,7 @@
     
     function myFunction(){
       
-        var canvas;
-        var context;
-        var image = document.getElementById('SourceImage');
-        canvas = document.getElementById('Canvas');
-        context = canvas.getContext('2d');
-        canvas.width = image.width;
-        canvas.height = image.height;
-        context.drawImage(image, 0, 0);
-        var imageData;
-
-      
-        imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-   
+    
             console.time('Function #1');
             const myArray = new Uint8Array(imageData.data);
             const buffer = _malloc(myArray.length);
@@ -120,9 +108,22 @@
 
     var Module = {
        onRuntimeInitialized: function() {
-         
-         var filterButton = document.getElementById('filterButton');
-         filterButton.addEventListener('click', function () {
+
+             var filterButton = document.getElementById('filterButton');
+             filterButton.addEventListener('click', function () {
+                   var canvas;
+            var context;
+            var image = document.getElementById('SourceImage');
+            canvas = document.getElementById('Canvas');
+            context = canvas.getContext('2d');
+            canvas.width = image.width;
+            canvas.height = image.height;
+            context.drawImage(image, 0, 0);
+            var imageData;
+
+
+            imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+   
             myFunction(); 
          });
          
