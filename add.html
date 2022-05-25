@@ -100,48 +100,50 @@
 
       //var Module = {};
 
-    function myFunction(imageData){
-            for(var i=0; i<20; i++){
-              console.time('Function #1');
-              const myArray = new Uint8Array(imageData.data);
-              const buffer = _malloc(myArray.length);
-              Module.HEAPU8.set(myArray, buffer);
-              ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
-              // console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
-              //var res = Module.HEAPU8.subarray(buffer, buffer+myArray.length);
-              imageData.data.set(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
-              //context.putImageData(imageData, 0, 0);
-             _free(buffer);
-              console.timeEnd('Function #1')
-            }
-     }
 
 
-    var Module = {
-       onRuntimeInitialized: function() {
-         alert('ready');
+              var Module = {
+                 onRuntimeInitialized: function() {
+                   alert('ready');
 
-             var filterButton = document.getElementById('filterButton');
-//               let canvas;
-//               let context;
-//               let image = document.getElementById('SourceImage');
-//               canvas = document.getElementById('Canvas');
-//               context = canvas.getContext('2d');
-//               canvas.width = image.width;
-//               canvas.height = image.height;
-//               context.drawImage(image, 0, 0);
-//               let imageData;
-//               imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-         
-         
-             filterButton.addEventListener('click', function () {
+                       var filterButton = document.getElementById('filterButton');
+          //               let canvas;
+          //               let context;
+          //               let image = document.getElementById('SourceImage');
+          //               canvas = document.getElementById('Canvas');
+          //               context = canvas.getContext('2d');
+          //               canvas.width = image.width;
+          //               canvas.height = image.height;
+          //               context.drawImage(image, 0, 0);
+          //               let imageData;
+          //               imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
-                  myFunction(imageData); 
-         });
-         
-         
-        }
-    };
+
+                       filterButton.addEventListener('click', function () {
+
+                            myFunction(imageData); 
+                   });
+
+
+                  }
+              };
+        
+            function myFunction(imageData){
+                    for(var i=0; i<20; i++){
+                      console.time('Function #1');
+                      const myArray = new Uint8Array(imageData.data);
+                      const buffer = _malloc(myArray.length);
+                      Module.HEAPU8.set(myArray, buffer);
+                      ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
+                      // console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
+                      //var res = Module.HEAPU8.subarray(buffer, buffer+myArray.length);
+                      imageData.data.set(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
+                      //context.putImageData(imageData, 0, 0);
+                     _free(buffer);
+                      console.timeEnd('Function #1')
+                    }
+             }
+
     
     }
     
