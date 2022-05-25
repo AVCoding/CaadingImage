@@ -106,7 +106,7 @@
         
         console.time('Function #1');
         const myArray = new Uint8Array(imageData.data);
-        const buffer = _malloc(myArray.length);
+        const buffer = Module._malloc(myArray.length);
         Module.HEAPU8.set(myArray, buffer);
         ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
         // console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
