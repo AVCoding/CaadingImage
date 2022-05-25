@@ -64,7 +64,10 @@
       var progressElement = document.getElementById('progress');
       var spinnerElement = document.getElementById('spinner');
 
-       var Module = {};
+        var Module = {
+        preRun: [],
+        postRun: [myFunction],
+        };
     
       
       
