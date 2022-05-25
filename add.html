@@ -1319,9 +1319,9 @@
         const myArray = new Uint8Array(imageData.data);
 
         const buffer = _malloc(myArray.length);
-        Module.HEAPU8.set(myArray, buffer);
+        var res = Module.HEAPU8.set(myArray, buffer);
 
-        var res = ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
+        ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
         console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
         imageData.data.set(res);
         context.putImageData(imageData, 0, 0);
