@@ -34,9 +34,6 @@
 
     
     imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-   
-
-    for (let i = 0; i < 20; i++) {
         console.time('Function #2');
         for (let i = 0; i < imageData.data.length; i += 4) {
             if ( imageData.data[i] < 100) {
@@ -70,7 +67,7 @@
 
         context.putImageData(imageData, 0, 0);
         console.timeEnd('Function #2')
-    }
+
         
   });
       
@@ -106,19 +103,19 @@
 
       
         imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-        for(var i = 0; i < 20; i++){
+   
             console.time('Function #1');
             const myArray = new Uint8Array(imageData.data);
-            const buffer = Module._malloc(myArray.length);
+            const buffer = _malloc(myArray.length);
             Module.HEAPU8.set(myArray, buffer);
-            Module.ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
+            ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
             // console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
             //var res = Module.HEAPU8.subarray(buffer, buffer+myArray.length);
             imageData.data.set(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
             context.putImageData(imageData, 0, 0);
-            Module._free(buffer);
+           _free(buffer);
             console.timeEnd('Function #1')
-        }
+
      
      }
 
