@@ -65,7 +65,7 @@
             }
         }
 
-        context.putImageData(imageData, 0, 0);
+        //context.putImageData(imageData, 0, 0);
         console.timeEnd('Function #2')
 
         
@@ -112,11 +112,9 @@
             // console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
             //var res = Module.HEAPU8.subarray(buffer, buffer+myArray.length);
             imageData.data.set(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
-            context.putImageData(imageData, 0, 0);
+            //context.putImageData(imageData, 0, 0);
            _free(buffer);
             console.timeEnd('Function #1')
-
-     
      }
 
 
