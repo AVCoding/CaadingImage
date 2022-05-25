@@ -1324,7 +1324,7 @@
         ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
         console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
       
-        var res = odule.HEAPU8.subarray(buffer, buffer+myArray.length);
+        var res = Module.HEAPU8.subarray(buffer, buffer+myArray.length);
         imageData.data.set(res);
         context.putImageData(imageData, 0, 0);
 
