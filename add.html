@@ -1243,7 +1243,7 @@
      imageData = context.getImageData(0, 0, canvas.width, canvas.height);
       console.time('Function #2');
 
-        for (int i = 0; i < imageData.data.length; i += 4) {
+        for (var i = 0; i < imageData.data.length; i += 4) {
           int r = imageData.data[i];
           int g = imageData.data[i+1];
           int b = imageData.data[i+2];
