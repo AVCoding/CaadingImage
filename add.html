@@ -94,7 +94,8 @@
         Module.HEAPU8.set(myArray, buffer);
 
         console.time('Function #1');
-        ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]).then(resp => console.timeEnd('Function #1'));
+        ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
+        console.timeEnd('Function #1')
         
         // console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
       
