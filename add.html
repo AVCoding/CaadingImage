@@ -64,28 +64,7 @@
       var progressElement = document.getElementById('progress');
       var spinnerElement = document.getElementById('spinner');
 
-      var Module = {
-        preRun: [],
-        postRun: [],
-        print: (function() {
-          var element = document.getElementById('output');
-          if (element) element.value = ''; // clear browser cache
-          return function(text) {
-            if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
-            // These replacements are necessary if you render to raw HTML
-            //text = text.replace(/&/g, "&amp;");
-            //text = text.replace(/</g, "&lt;");
-            //text = text.replace(/>/g, "&gt;");
-            //text = text.replace('\n', '<br>', 'g');
-            console.log(text);
-            if (element) {
-              element.value += text + "\n";
-              element.scrollTop = element.scrollHeight; // focus on bottom
-            }
-          };
-        })()
-        
-      };
+      var Module = {};
     
       
       
@@ -114,7 +93,7 @@
         console.time('Function #1');
         ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
         console.timeEnd('Function #1')
-        console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
+        // console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
       
         var res = Module.HEAPU8.subarray(buffer, buffer+myArray.length);
         imageData.data.set(res);
