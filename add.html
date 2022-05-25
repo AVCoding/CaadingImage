@@ -104,13 +104,13 @@
       
         imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         
-        
+        console.time('Function #1');
         const myArray = new Uint8Array(imageData.data);
 
         const buffer = _malloc(myArray.length);
         Module.HEAPU8.set(myArray, buffer);
 
-        console.time('Function #1');
+        
         ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
            console.timeEnd('Function #1')
         
