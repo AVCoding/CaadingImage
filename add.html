@@ -1221,6 +1221,20 @@
     <button id="filterButton">Wasm</button>
 
     <script type='text/javascript'>
+       var canvas;
+      var context;
+      var image = document.getElementById('SourceImage');
+      canvas = document.getElementById('Canvas');
+      context = canvas.getContext('2d');
+      canvas.width = image.width;
+      canvas.height = image.height;
+      context.drawImage(image, 0, 0);
+      var imageData;
+
+      
+      
+      
+      
       var statusElement = document.getElementById('status');
       var progressElement = document.getElementById('progress');
       var spinnerElement = document.getElementById('spinner');
@@ -1294,24 +1308,9 @@
       };
       
       
-          var canvas;
-    var context;
-
-    var image = document.getElementById('SourceImage');
-
-    canvas = document.getElementById('Canvas');
-    context = canvas.getContext('2d');
-
-    canvas.width = image.width;
-    canvas.height = image.height;
-
-
-    context.drawImage(image, 0, 0);
+   
     
-    var imageData;
-    
-    
- function myFunction(){
+    function myFunction(){
 
         imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     
@@ -1329,7 +1328,7 @@
 
         _free(buffer);
 
-      }
+     }
 
 
 var Module = {
