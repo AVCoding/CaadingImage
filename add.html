@@ -18,22 +18,11 @@
     <script type='text/javascript'> 
         var withoutButton = document.getElementById('withoutButton');
       
-      
-      
-  withoutButton.addEventListener('click', function () {
-    
-        let canvas;
-        let context;
-        let image = document.getElementById('SourceImage');
-        canvas = document.getElementById('Canvas');
-        context = canvas.getContext('2d');
-        canvas.width = image.width;
-        canvas.height = image.height;
-        context.drawImage(image, 0, 0);
-        let imageData;
 
-    
-    imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        
+      
+      function myFunctionTWO(imageData){
+     
         console.time('Function #2');
         for (let i = 0; i < imageData.data.length; i += 4) {
             if ( imageData.data[i] < 100) {
@@ -67,7 +56,21 @@
 
         //context.putImageData(imageData, 0, 0);
         console.timeEnd('Function #2')
+      }
 
+      
+  withoutButton.addEventListener('click', function () {
+    let canvas;
+    let context;
+    let image = document.getElementById('SourceImage');
+    canvas = document.getElementById('Canvas');
+    context = canvas.getContext('2d');
+    canvas.width = image.width;
+    canvas.height = image.height;
+    context.drawImage(image, 0, 0);
+    let imageData;
+    imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    myFunctionTWO(imageData)
         
   });
       
@@ -83,15 +86,10 @@
       var progressElement = document.getElementById('progress');
       var spinnerElement = document.getElementById('spinner');
 
-      var Module = {};
-    
-      
-      
-   
+      //var Module = {};
+
     
     function myFunction(imageData){
-      
-    
             console.time('Function #1');
             const myArray = new Uint8Array(imageData.data);
             const buffer = _malloc(myArray.length);
@@ -112,19 +110,17 @@
              var filterButton = document.getElementById('filterButton');
              filterButton.addEventListener('click', function () {
                    var canvas;
-            var context;
-            var image = document.getElementById('SourceImage');
-            canvas = document.getElementById('Canvas');
-            context = canvas.getContext('2d');
-            canvas.width = image.width;
-            canvas.height = image.height;
-            context.drawImage(image, 0, 0);
-            var imageData;
-
-
-            imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                  var context;
+                  var image = document.getElementById('SourceImage');
+                  canvas = document.getElementById('Canvas');
+                  context = canvas.getContext('2d');
+                  canvas.width = image.width;
+                  canvas.height = image.height;
+                  context.drawImage(image, 0, 0);
+                  var imageData;
+                  imageData = context.getImageData(0, 0, canvas.width, canvas.height);
    
-            myFunction(imageData); 
+                  myFunction(imageData); 
          });
          
          
