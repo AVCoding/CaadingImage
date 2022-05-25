@@ -1215,6 +1215,10 @@
       <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
     </div>
     <textarea id="output" rows="8"></textarea>
+    
+    <img id="SourceImage" src="https://previews.123rf.com/images/lightfieldstudios/lightfieldstudios2002/lightfieldstudios200211714/140553324-stacked-cardboard-boxes-with-barcodes-and-qr-codes-on-cards.jpg" crossorigin="Anonymous">
+    <canvas id="Canvas" width="1300" height="866"></canvas>
+    <button id="filterButton">Wasm</button>
 
     <script type='text/javascript'>
       var statusElement = document.getElementById('status');
@@ -1289,6 +1293,56 @@
         };
       };
     </script>
+    
+    
+    var canvas;
+    var context;
+
+    var image = document.getElementById('SourceImage');
+
+    canvas = document.getElementById('Canvas');
+    context = canvas.getContext('2d');
+
+    canvas.width = image.width;
+    canvas.height = image.height;
+
+
+    context.drawImage(image, 0, 0);
+    
+    var imageData;
+    
+    
+ function myFunction(){
+
+        imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    
+        const myArray = new Uint8Array(imageData.data);
+
+        const buffer = _malloc(myArray.length);
+        Module.HEAPU8.set(myArray, buffer);
+
+        ccall('grayScale', null, ['number', 'number'], [buffer, myArray.length]);
+
+        console.log(Module.HEAPU8.subarray(buffer, buffer+myArray.length));
+
+        _free(buffer);
+
+      }
+
+
+var Module = {
+       onRuntimeInitialized: function() {
+         
+         var filterButton = document.getElementById('filterButton');
+         filterButton.addEventListener('click', function () {
+             myFunction();
+         });
+         
+         
+        }
+    };
+    
+    
     <script async type="text/javascript" src="add.js"></script>
   </body>
 </html>
