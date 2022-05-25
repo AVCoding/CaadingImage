@@ -17,18 +17,20 @@
     
     <script type='text/javascript'> 
         var withoutButton = document.getElementById('withoutButton');
-      
-      var canvas;
-      var context;
-      var image = document.getElementById('SourceImage');
-      canvas = document.getElementById('Canvas');
-      context = canvas.getContext('2d');
-      canvas.width = image.width;
-      canvas.height = image.height;
-      context.drawImage(image, 0, 0);
-      var imageData;
-      imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
-      
+      window.onload = function() {
+          var canvas;
+          var context;
+          var image = document.getElementById('SourceImage');
+          canvas = document.getElementById('Canvas');
+          context = canvas.getContext('2d');
+          canvas.width = image.width;
+          canvas.height = image.height;
+          context.drawImage(image, 0, 0);
+          var imageData;
+          imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+
+      }
+
 
         
       
