@@ -1244,10 +1244,10 @@
       console.time('Function #2');
 
         for (var i = 0; i < imageData.data.length; i += 4) {
-          int r = imageData.data[i];
-          int g = imageData.data[i+1];
-          int b = imageData.data[i+2];
-          int a = imageData.data[i+3];
+          var r = imageData.data[i];
+          var g = imageData.data[i+1];
+          var b = imageData.data[i+2];
+          var a = imageData.data[i+3];
           imageData.data[i] = r;
           imageData.data[i+1] = r;
           imageData.data[i+2] = r;
