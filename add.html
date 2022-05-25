@@ -1219,6 +1219,47 @@
     <img id="SourceImage" src="https://previews.123rf.com/images/lightfieldstudios/lightfieldstudios2002/lightfieldstudios200211714/140553324-stacked-cardboard-boxes-with-barcodes-and-qr-codes-on-cards.jpg" crossorigin="Anonymous">
     <canvas id="Canvas"></canvas>
     <button id="filterButton">Wasm</button>
+    
+    <button id="withoutButton">Without</button>
+    
+    <script type='text/javascript'> 
+        var withoutButton = document.getElementById('withoutButton');
+        var canvas;
+        var context;
+        var image = document.getElementById('SourceImage');
+        canvas = document.getElementById('Canvas');
+        context = canvas.getContext('2d');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        context.drawImage(image, 0, 0);
+        var imageData;
+
+      
+        imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      
+      
+  withoutButton.addEventListener('click', function () {
+    
+     imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      console.time('Function #2');
+
+        for (int i = 0; i < imageData.data.length; i += 4) {
+          int r = imageData.data[i];
+          int g = imageData.data[i+1];
+          int b = imageData.data[i+2];
+          int a = imageData.data[i+3];
+          imageData.data[i] = r;
+          imageData.data[i+1] = r;
+          imageData.data[i+2] = r;
+          imageData.data[i+3] = a;
+        }
+
+     context.putImageData(imageData, 0, 0);
+     console.timeEnd('Function #2')
+       
+  });
+      
+    </script>
 
     <script type='text/javascript'>
   
